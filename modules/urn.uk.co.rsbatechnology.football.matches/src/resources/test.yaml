@@ -1,0 +1,14 @@
+--- !<tag:yaml.org,2002:PhysicalResource>
+urn: "RefData/Instrument/FixedIncome/Bond"
+version: "4.0.0"
+name: "Bond"
+temporality: "BiTemporal"
+output:
+  defaultModel: "irds"
+mappings:
+- !<direct>
+  model: "jdbc"
+  name: "BOND_D_RAW"
+- !<direct>
+  model: "jdbc"
+  name: "BOND_D_RAW"

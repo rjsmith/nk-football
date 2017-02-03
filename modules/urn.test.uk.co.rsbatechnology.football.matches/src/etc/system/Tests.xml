@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests>
+	<test>
+		<id>test:urn:uk:co:rsbatechnology:football:matches</id>
+		<name>Football - Matches</name>
+		<desc>Contains resources to access state of football match results</desc>
+		<uri>res:/resources/test/testlist.xml</uri>
+	</test>
+</tests>

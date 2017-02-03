@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="file://Users/richardsmith/Projects/NetKernel/standard-module-2.0-schema-1.0.xsd">
+   <meta>
+      <identity>
+         <uri>urn:uk:co:rsbatechnology:football:matches</uri>
+         <version>1.0.0</version>
+      </identity>
+      <info>
+         <name>Football - Matches</name>
+         <description>Contains resources to access state of football match results</description>
+         <icon>res:/resources/pub/football.jpeg</icon>
+      </info>
+   </meta>
+   <system>
+      <dynamic/>
+   </system>
+
+   <rootspace name = "Football - Matches - Results" uri="urn:uk:co:rsbatechnology:football:matches">
+   		<mapper>
+   			<config>
+   				<endpoint>
+   					<name>Home Team Results</name>
+   					<description>Aggregates results for each team when playing at home</description>
+		 			<grammar>
+						<active>
+							<identifier>active:HomeResults</identifier>
+							<argument name="matches" desc="Set of matches e.g. as returned from active:MatchResults"/>
+						</active>
+					</grammar>
+   					<request>
+						<identifier>active:HomeAwayResults</identifier>
+				        <argument name="matches">arg:matches</argument>
+				        <argument name="homeOrAway">home</argument>
+   					</request>
+   				</endpoint>
+   				<endpoint>
+   					<name>Away Team Results</name>
+   					<description>Aggregates results for each team when playing away</description>
+		 			<grammar>
+						<active>
+							<identifier>active:AwayResults</identifier>
+							<argument name="matches" desc="Set of matches e.g. as returned from active:MatchResults"/>
+						</active>
+					</grammar>
+   					<request>
+						<identifier>active:HomeAwayResults</identifier>
+				        <argument name="matches">arg:matches</argument>
+				        <argument name="homeOrAway">away</argument>
+   					</request>
+   				</endpoint>
+   			</config>
+   			<space>
+				<accessor>
+					<id>HomeOrAwayResults</id>
+					<class>uk.co.rsbatechnology.football.endpoint.HomeAwayResultsAccessor</class>
+					<description>Returns a summary of the season results for each team when playing at home or away</description>
+					<grammar>
+						<active>
+							<identifier>active:HomeAwayResults</identifier>
+							<argument name="matches" desc="Set of matches e.g. as returned from active:MatchResults"/>
+							<argument name="homeOrAway" desc="Compute results when team is playing at home or away. Must be either 'home' or 'away'"/>
+						</active>
+					</grammar>
+					<doc>res:/uk/co/rsbatechnology/football/doc/homeAwayResults.md</doc>
+				</accessor>
+   			</space>
+   		</mapper>
+		<accessor>
+			<name>Football Season Match Results</name>
+			<description>Individual match results for a given season</description>
+			<grammar>
+				<active>
+					<identifier>active:MatchResults</identifier>
+					<argument name="season" desc="Season label" />
+					<argument name="csvFile" desc="Identifier of season matches csv"/>
+				</active>
+			</grammar>
+			<class>uk.co.rsbatechnology.football.endpoint.MatchResultsAccessor</class>
+		</accessor>
+		<accessor>
+			<name>Football Season Results Table</name>
+			<description>Summary of season results per team</description>
+			<grammar>
+				<active>
+					<identifier>active:ResultsTable</identifier>
+					<argument name="matches" desc="Set of matches e.g. as returned from active:MatchResults"/>					
+				</active>
+			</grammar>
+			<class>uk.co.rsbatechnology.football.endpoint.ResultsTableAccessor</class>
+		</accessor>		
+   		<import>
+   		    <!--  HDS2 -->
+   			<uri>urn:org:netkernel:mod:hds</uri>
+   			<private />
+   		</import>
+   </rootspace>
+      
+   <rootspace name="Football - Matches - Results - RDBMS" uri="urn:uk:co:rsbatechnology:football:matches:results:rdbms" public = "false">
+		<fileset>
+			<regex>res:/etc/ConfigRDBMS.xml</regex>
+		</fileset>
+		<import>
+			<uri>urn:org:netkernel:mod:db</uri>
+		</import>
+		<fileset>
+			<regex>res:/uk/co/rsbatechnology/football/sql/.*</regex>
+		</fileset>
+		<mapper>
+			<config>
+				<endpoint>
+					<grammar>active:initDatabase</grammar>
+					<request>
+						<identifier>active:groovy</identifier>
+						<argument name="operator">res:/uk/co/rsbatechnology/football/sql/installDatabase.gy</argument>
+					</request>
+				</endpoint>
+			</config>
+			<space name="Install DB Script">
+				<import>
+					<uri>urn:org:netkernel:lang:groovy</uri>
+				</import>
+			</space>
+		</mapper>   
+   </rootspace>
+   
+   <rootspace name="Football - YAML Test" uri="urn:uk:co:rsbatechnology:football:matches:YAML">
+   		<fileset>
+   			<regex>res:/resources/.*yaml</regex>
+   		</fileset>
+   		<import>
+   			<uri>urn:org:netkernel:yaml:core</uri>
+   		</import>
+   </rootspace>
+   
+   <rootspace name="Football - Matches - Documentation Space" public="true" uri="urn:uk:co:rsbatechnology:football:matches:doc">
+      <fileset>
+         <regex>res:/etc/system/(Books|Docs).xml</regex>
+      </fileset>
+      <fileset>
+         <regex>res:/resources/doc/.*</regex>
+      </fileset>
+	  <fileset>
+		<regex>res:/uk/co/rsbatechnology/football/doc/.*</regex>
+	  </fileset>
+   </rootspace>
+   
+</module>

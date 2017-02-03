@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<books>
+	<book>
+		<id>book:urn:uk:co:rsbatechnology:football:matches</id>
+		<title>Football - Matches</title>
+		<desc>Contains resources to access state of football match results</desc>
+		<toc>
+			<item id="urn:uk:co:rsbatechnology:football:matches:guide"/>
+			<item id="urn:uk:co:rsbatechnology:football:homeResults"/>
+		</toc>
+	</book>
+</books>

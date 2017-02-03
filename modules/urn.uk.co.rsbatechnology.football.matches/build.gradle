@@ -1,0 +1,33 @@
+apply plugin: 'netkernel'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+buildscript {
+	  apply from: '../../common/common-build.gradle', to: buildscript
+}
+
+dependencies {
+	compile group: 'urn.org.netkernel', name: 'mod.hds', version: '[1.1.1,)'
+	testCompile (
+		[group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'],
+		[group: 'junit', name: 'junit', version: '4.7+'],
+		[group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3']
+	)
+}
+
+netkernel {
+    useMavenCentral()
+    useMavenNK()
+    useStandardCompileDependencies()	//This provides core NK libs to all builds
+    
+ 
+     instances
+    {
+        TEST
+            {
+                edition = "EE"
+                location = "/Users/richardsmith/Projects/NetKernel/NKEE-6.1.1/"
+            }
+    }
+   
+}

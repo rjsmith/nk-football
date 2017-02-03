@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<docs>
+	<doc>
+		<id>urn:uk:co:rsbatechnology:football:matches:guide</id>
+		<title>Guide to Football - Matches</title>
+		<desc>Development Diary</desc>
+		<uri>res:/resources/doc/dev_diary.md</uri>
+		<category>doc</category>
+	</doc>
+	<doc>
+		<id>urn:uk:co:rsbatechnology:football:homeResults</id>
+		<title>Home Results</title>
+		<desc>Home Results processor</desc>
+		<uri>res:/uk/co/rsbatechnology/football/doc/homeAwayResults.md</uri>
+		<category>doc accessor</category>
+	</doc>
+</docs>

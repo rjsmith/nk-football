@@ -1,0 +1,98 @@
+try
+{	req=context.createRequest("active:sqlQuery");
+	req.addArgumentByValue("operand", """SELECT * FROM ticker LIMIT 1;""");
+	rep=context.issueRequest(req);
+	
+	rep="<div><h1>Database Already Installed</h1></div>";
+}
+catch(Exception e)
+{	req=context.createRequest("active:sqlUpdate");
+	req.addArgument("operand", "res:/com/db/dif2/demo/data/db-schema.sql");
+	rep=context.issueRequest(req);
+	
+	//Initial Data
+	data=[
+	      	["A", 110.0 , 50000, 1, 0.1],
+	      	["B", 53.5 , 100000, 2, 0.1],
+	      	["C", 117.25 , 30000, 3, 0.05],
+	      	["D", 11.25 , 1350000, 4, 0.05],
+	      	["E", 71.0 , 150000, 5, 0.1],
+	      	["F", 121.95 , 380000, 6, 0.05],
+	      	["G", 2.95 , 33800000, 7, 0.01],
+	      	["H", 52.25 , 5800000, 8, 0.05],
+	      	["I", 27.1 , 440000, 9, 0.01],
+	      	["J", 99.2 , 2700000, 10, 0.1],
+	      	["K", 550.2 , 650000, 11, 0.2],
+	      	["L", 150.8 , 1230000, 12, 0.1],
+	      	["M", 221.5 , 430000, 13, 0.2],
+	      	["N", 43.2 , 8900000, 14, 0.01],
+	      	["O", 1223.5 , 4430000, 15, 0.5],
+	      	["P", 197.2 , 934000, 16, 0.1],
+	      	["Q", 123.2 , 434300, 17, 0.1],
+	      	["R", 4423.5 , 43300, 18, 0.5],
+	      	["S", 1123.5 , 13300, 19, 0.5],
+	      	["T", 45.2 , 103300, 20, 0.01],
+	      	["U", 653.2 , 198100, 21, 0.4],
+	      	["V", 353.2 , 298100, 22, 0.2],
+	      	["W",  34.2 , 10098100, 23, 0.01],
+	      	["X", 346.2 , 8723400, 24, 0.2],
+	      	["Y", 123.25 , 1223400, 25, 0.05],
+	      	["Z", 736.2 , 133400, 26, 0.2]
+	      	
+	      ]
+	    		  
+	for(i=0; i< data.size(); i++)
+	{	row=data[i];
+		symbol=row[0];
+		price=row[1].doubleValue();
+		quantity=row[2];
+		index=row[3];
+		tickersize=row[4].doubleValue();
+		println("Populating data: "+symbol)
+		
+		req = context.createRequest("active:sqlPSUpdate");
+		req.addArgumentByValue("operand", "INSERT INTO ticker VALUES (NULL, ?);")
+		req.addArgumentByValue("param", symbol);
+		rep=context.issueRequest(req);
+		symbolid=rep.getFirstValue("/generated-keys/resultset/row/SCOPE_IDENTITY()").intValue()
+		
+		req = context.createRequest("active:sqlPSUpdate");
+		req.addArgumentByValue("operand", "INSERT INTO instantprice VALUES (NULL, ?, ?, ?);")
+		req.addArgumentByValue("param", symbolid);
+		req.addArgumentByValue("param", price);
+		req.addArgumentByValue("param", tickersize);
+		rep=context.issueRequest(req);
+		
+		req = context.createRequest("active:sqlPSUpdate");
+		req.addArgumentByValue("operand", "INSERT INTO closingprice VALUES (NULL, 1, ?, ?);")
+		req.addArgumentByValue("param", symbolid);
+		req.addArgumentByValue("param", price);
+		rep=context.issueRequest(req);
+		
+		req = context.createRequest("active:sqlPSUpdate");
+		req.addArgumentByValue("operand", "INSERT INTO quantity VALUES (NULL, 1, ?, ?);")
+		req.addArgumentByValue("param", symbolid);
+		req.addArgumentByValue("param", quantity);
+		rep=context.issueRequest(req);
+		
+		req = context.createRequest("active:sqlPSUpdate");
+		req.addArgumentByValue("operand", "INSERT INTO indexlist VALUES (NULL, ?, ?);")
+		req.addArgumentByValue("param", symbolid);
+		req.addArgumentByValue("param", index);
+		rep=context.issueRequest(req);
+		
+	}
+	
+	req = context.createRequest("active:sqlUpdate");
+	req.addArgumentByValue("operand", "INSERT INTO indexhistory VALUES (NULL, 0, 100.0);")
+	rep=context.issueRequest(req);
+	
+	req = context.createRequest("active:sqlUpdate");
+	req.addArgumentByValue("operand", "INSERT INTO marcaphistory VALUES (NULL, 0, 1.15090371E10);")
+	rep=context.issueRequest(req);
+	
+	rep="<div><h1>Database Installed Successfully</h1></div>";
+}
+	
+resp=context.createResponseFrom(rep)
+resp.setExpiry(resp.EXPIRY_ALWAYS)

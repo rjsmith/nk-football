@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testlist>
+	<module>
+		<uri>urn:uk:co:rsbatechnology:football:matches</uri>
+	</module>
+	<import>res:/org/netkernel/xml/assert/assertLibrary.xml</import>
+	
+	<test name="active:HomeResults test">
+		<request>
+			<identifier>active:HomeResults</identifier>
+			<argument name="matches">
+				<literal type="hds">
+					<season>2014-2015</season>
+					<matches>
+						<match>
+							<div>E0</div>
+							<date>2014-08-16</date>
+							<homeTeam>Arsenal</homeTeam>
+							<awayTeam>Crystal Palace</awayTeam>
+							<fthg>2</fthg>
+							<ftag>1</ftag>
+							<ftr>H</ftr>
+						</match>
+					</matches>
+				</literal>
+			</argument>
+		</request>		
+		<assert>
+			<xpath>count(//teamResult)=1</xpath>
+			
+		</assert>
+	</test>
+
+		
+</testlist>
