@@ -93,6 +93,10 @@
    			<uri>urn:org:netkernel:mod:hds</uri>
    			<private />
    		</import>
+      <fileset>
+         <regex>res:/resources/pub/football.jpeg</regex>
+      </fileset>
+
    </rootspace>
       
    <rootspace name="Football - Matches - Results - RDBMS" uri="urn:uk:co:rsbatechnology:football:matches:results:rdbms" public = "false">
@@ -132,12 +136,15 @@
    		</import>
    </rootspace>
    
-   <rootspace name="Football - Matches - Documentation Space" public="true" uri="urn:uk:co:rsbatechnology:football:matches:doc">
+   <rootspace name="Football - Matches - Documentation Space" uri="urn:uk:co:rsbatechnology:football:matches:doc">
       <fileset>
          <regex>res:/etc/system/(Books|Docs).xml</regex>
       </fileset>
       <fileset>
          <regex>res:/resources/doc/.*</regex>
+      </fileset>
+      <fileset>
+         <regex>res:/resources/pub/football.jpeg</regex>
       </fileset>
 	  <fileset>
 		<regex>res:/uk/co/rsbatechnology/football/doc/.*</regex>

@@ -2,23 +2,21 @@
 Development Diary
 =================
 
-Setup
------
+## 1. Setup
 
  1. Created module from Standard Module
  2. Imported into Eclipse (New Java project -> use folder as source)
  3. Created modules.d file and created symbolic link in NK6.1EE `etc/modules.d` folder
 
-CSV Space
----------
+## 2. CSV Space
+
 
  1. Copied Premier.csv into `/resources/matches/2014-2015.csv`
  2. Created a `<rootspace>` with public="false" (want to hide csv file from rest of system)
  3. Created a fileset endpoint `<regex>res:/resources/matches/.*csv</regex>`
  4. Used the Request Trace tool to check that the resource res:/resources/matches/Premier.csv can resolve
 
-Results Endpoint
-----------------
+## 3. Results Endpoint
 
 The idea is to provide an accessor endpoint that can return the set of all match results in a given football season.
 
@@ -28,8 +26,8 @@ The idea is to provide an accessor endpoint that can return the set of all match
  4. Set up a dummy response to return the size of the returned stream object.
  5. Used the Request Trace tool to check the request resolution and the endpoint returns a representation (e.g. "active:MatchResults+season@2014-2015")
 
-HomeAwayResults Endpoint
---------------------
+## 4. HomeAwayResults Endpoint
+
 Goal: Create a service endpoint that derives some information from the underlying set of match results.
 
 In module.xml, created another service accessor, active:HomeResults, class: uk.co.rsbatechnology.football.HomeResultsAccessor.java
@@ -101,8 +99,7 @@ Added a Mapper endpoint to provide `active:HomeResults` and `active:AwayResults`
             </request>
         </endpoint>
   
-ResultsTableEndpoint
---------------------
+# 5. ResultsTableEndpoint
 
 Started building a ResultsTableAccessor physical endpoint.
 
@@ -135,8 +132,7 @@ Tested this with the Request Trace:
 		<argument name="matches">active:MatchResults+season@2014-2015+csvFile@res:/resources/matches/2014-2015.csv</argument>
 	</request>
  
-XUNIT Tests Triggered from Eclipse
-----------------------------------
+## 6. XUNIT Tests Triggered from Eclipse
 
 I recalled I had previously experimented in using RobotFramework to externally trigger the execution of NetKernel XUnit tests, and assert the results returned.  This worked by using an (undocumented?) known url that allows externalsystems to trigger execution of a module's xUnit tests via the backend fulcrum.
 
@@ -178,14 +174,17 @@ Returns this http response:
   
 So I experimented with setting up a jUnit test that uses the Apache httpclient library to trigger my local NKEE instance to run the xUnit tests for this module, and then assert the returned results.
 
-XUnit test for active:HomeResults
----------------------------------
+## 7. XUnit test for active:HomeResults
 
 To test this resource, we need to provide a set of matches in the correct-format HDS document, and then assert the computed results.
 
 Used a literal representation of an example response from a active:MatchResults resource.  But got an exception because it did not represent the expected HDS2 node value datatype (LocalDate).
 According to tab@1060research.com, it would work if I specified a base64 - encoded serialised LocalDate object, but that is not terribly readable.
 I got round this issue by changing the node value types all to strings. Instead, I could have written some groovy code to create the example HDS representation, possibly even embedding this in the test file (as a request to active:groovy, returning the HDS structure) 
+
+## 8. Refactor into separate modules
+
+Refactored the XUnit tests into a separate urn:test:uk:co:rsbatechnology:football:matches module.  I also moved the example csv file out of the main module and into the test module. 
 
 
 Gotchas & Lessons Learnt
@@ -219,7 +218,7 @@ Stumbling blocks encountered whilst working on this module:
 	</argument>
 	</request>
 	
- 5. Standard module <endpoint> <doc> element is no longer supported, although it is still documented. The expected technique is:
+ 5. Standard module endpoint `<doc>` element is no longer supported, although it is still documented. The expected technique is:
  5.1  to add a doc (referenced in the module's etc/system/Docs.xml) for each endpoint you want to document, also specifying `<category>doc accessor</category>`
  5.2 adding {endpoint}MyEndpointUri{endpoint} macro to bring in the auto-generated endpoint documentation.
  

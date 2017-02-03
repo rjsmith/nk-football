@@ -4,6 +4,7 @@
 		<id>book:urn:uk:co:rsbatechnology:football:matches</id>
 		<title>Football - Matches</title>
 		<desc>Contains resources to access state of football match results</desc>
+		<icon>res:/resources/pub/football.jpeg</icon>
 		<toc>
 			<item id="urn:uk:co:rsbatechnology:football:matches:guide"/>
 			<item id="urn:uk:co:rsbatechnology:football:homeResults"/>
