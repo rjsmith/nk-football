@@ -24,7 +24,9 @@ catch(Exception e)
 	IHDSDocument matches = context.source("arg:matches", IHDSDocument.class);
 	
 	IHDSReader reader = matches.getReader();
-	
+
+    String season = (String) reader.getFirstValue("/season");
+    
 	// Loop over all match nodes
 	for(IHDSReader match: reader.getNodes("/matches/match")) {
 		// Extract data out of HDS document
@@ -38,7 +40,8 @@ catch(Exception e)
 		String result = (String) match.getFirstValue("ftr");
 
 		req = context.createRequest("active:sqlPSUpdate");
-		req.addArgumentByValue("operand", "INSERT INTO matches VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);")
+		req.addArgumentByValue("operand", "INSERT INTO matches VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);")
+        req.addArgumentByValue("param", season);
 		req.addArgumentByValue("param", div);
 		req.addArgumentByValue("param", asDate);
 		req.addArgumentByValue("param", homeTeam);

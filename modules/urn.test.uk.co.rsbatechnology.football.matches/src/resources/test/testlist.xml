@@ -27,9 +27,17 @@
 		</request>		
 		<assert>
 			<xpath>count(//teamResult)=1</xpath>
-			
 		</assert>
 	</test>
 
+	<test name="matchResultsRDBMSAccessor test">
+		<request>
+			<identifier>active:matchResultsRDBMS</identifier>
+			<argument name="season">2014-2015</argument>
+		</request>
+		<assert>
+			<xpath>count(//match)=380</xpath>
+		</assert>	
+	</test>
 		
 </testlist>

@@ -72,10 +72,10 @@
 				<active>
 					<identifier>active:MatchResults</identifier>
 					<argument name="season" desc="Season label" />
-					<argument name="csvFile" desc="Identifier of season matches csv"/>
+					<argument name="csvFile" desc="Identifier of season matches csv file"/>
 				</active>
 			</grammar>
-			<class>uk.co.rsbatechnology.football.endpoint.MatchResultsAccessor</class>
+			<class>uk.co.rsbatechnology.football.endpoint.MatchResultsCSVAccessor</class>
 		</accessor>
 		<accessor>
 			<name>Football Season Results Table</name>
@@ -131,6 +131,23 @@
 				</import>
 			</space>
 		</mapper>   
+		<endpoint>
+			<grammar>
+				<active>
+					<identifier>active:matchResultsRDBMS</identifier>
+					<argument name="season" desc="Season label" />
+				</active>
+			</grammar>
+			<class>uk.co.rsbatechnology.football.endpoint.MatchResultsRDBMSAccessor</class>
+		</endpoint>
+   		<import>
+   		    <!--  HDS2 -->
+   			<uri>urn:org:netkernel:mod:hds</uri>
+    	</import>
+		<import>
+		  <uri>urn:org:netkernel:mod:db</uri>
+		  <private />
+		</import>
    </rootspace>
    
    <rootspace name="Football - YAML Test" uri="urn:uk:co:rsbatechnology:football:matches:YAML">

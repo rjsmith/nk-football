@@ -199,6 +199,12 @@ I triggered the active:initDatabase endpoint by issuing the request into the tes
 
 This request effectively transfers football match state from CSV -> HDS -> RDBMS.  Resolution into the test space superstack ensures that all of the endpoints can be resolved.
 
+Whilst writing the MatchResultsRDBMSAccessor class, I used the NetKernel SQL Playpen to check the SQL statements.  I also wrote a jUnit test, MatchResultsRDBMSACcessorTests, to test the internal parsing of the returned ResultSet HDS structure into the Match Results HDS.
+
+I added a simple XUnit test to assert that the endpoint returns valid HDS match representation.
+
+
+
 Gotchas & Lessons Learnt
 -----------------------
 Stumbling blocks encountered whilst working on this module:

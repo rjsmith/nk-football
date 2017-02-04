@@ -20,11 +20,11 @@ import org.netkernel.module.standard.endpoint.StandardAccessorImpl;
  * Accessor responsible for returning a HDS2 representation of a set (season) of football match results.
  *
  */
-public class MatchResultsAccessor extends StandardAccessorImpl {
+public class MatchResultsCSVAccessor extends StandardAccessorImpl {
 
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
     private static final DateTimeFormatter ISOFormatter = DateTimeFormatter.ISO_DATE;
-	public MatchResultsAccessor()
+	public MatchResultsCSVAccessor()
 	{	
 	    this.declareThreadSafe();
 	    
