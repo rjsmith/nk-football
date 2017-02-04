@@ -1,43 +1,11 @@
-CREATE TABLE ticker (
+CREATE TABLE matches (
     id        	INTEGER IDENTITY,
-    symbol 		VARCHAR(100)
+    div 		VARCHAR(100),
+    date		DATE,
+    homeTeam	VARCHAR(100),
+    awayTeam	VARCHAR(100),
+    fthg		INTEGER,
+    ftag		INTEGER,
+    ftr			VARCHAR(1)
 );
 
-CREATE TABLE instantprice (
-    id        	INTEGER IDENTITY,
-    tickerid 	INTEGER,
-    price 		FLOAT,
-    tickersize  FLOAT
-);
-
-CREATE TABLE closingprice (
-    id        	INTEGER IDENTITY,
-    day			INTEGER,
-    tickerid 	INTEGER,
-    price 		FLOAT
-);
-
-CREATE TABLE quantity (
-    id        	INTEGER IDENTITY,
-    day			INTEGER,
-    tickerid 	INTEGER,
-    shares 		INTEGER
-);
-
-CREATE TABLE indexlist (
-    id        	INTEGER IDENTITY,
-    tickerid 	INTEGER,
-    position 	INTEGER
-);
-
-CREATE TABLE indexhistory (
-    id      INTEGER IDENTITY,
-    day 	INTEGER,
-    value 	FLOAT
-);
-
-CREATE TABLE marcaphistory (
-    id      INTEGER IDENTITY,
-    day 	INTEGER,
-    value 	FLOAT
-);

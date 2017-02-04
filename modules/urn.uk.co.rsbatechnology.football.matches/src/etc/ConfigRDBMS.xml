@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><config>
+	<rdbms>
+		<jdbcDriver>org.h2.jdbcDriver</jdbcDriver>
+		<!--Edit this jdbcConnection url to point to a directory on your disk-->
+		<jdbcConnection>jdbc:h2:/Users/richardsmith/tmp/football/football</jdbcConnection>
+		<poolSize>64</poolSize>
+		<blockOnOverload>30000</blockOnOverload>
+		<user>sa</user>
+		<password/>
+		<shutdown>true</shutdown>
+	</rdbms>
+</config>

@@ -99,7 +99,7 @@
 
    </rootspace>
       
-   <rootspace name="Football - Matches - Results - RDBMS" uri="urn:uk:co:rsbatechnology:football:matches:results:rdbms" public = "false">
+   <rootspace name="Football - Matches - Results - RDBMS" uri="urn:uk:co:rsbatechnology:football:matches:results:rdbms" public = "true">
 		<fileset>
 			<regex>res:/etc/ConfigRDBMS.xml</regex>
 		</fileset>
@@ -112,10 +112,16 @@
 		<mapper>
 			<config>
 				<endpoint>
-					<grammar>active:initDatabase</grammar>
+					<grammar>
+						<active>
+							<identifier>active:initDatabase</identifier>
+							<argument name="matches" desc="Set of matches e.g. as returned from active:MatchResults" />
+						</active>
+					</grammar>
 					<request>
 						<identifier>active:groovy</identifier>
 						<argument name="operator">res:/uk/co/rsbatechnology/football/sql/installDatabase.gy</argument>
+						<argument name="matches">arg:matches</argument>
 					</request>
 				</endpoint>
 			</config>

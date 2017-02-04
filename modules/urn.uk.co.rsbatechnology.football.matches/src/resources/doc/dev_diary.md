@@ -186,6 +186,18 @@ I got round this issue by changing the node value types all to strings. Instead,
 
 Refactored the XUnit tests into a separate urn:test:uk:co:rsbatechnology:football:matches module.  I also moved the example csv file out of the main module and into the test module. 
 
+## 9. Added RDBMS space
+
+Created a space to encapsulate a database containing football match results, as an example of using NetKernel's RDBMS module.
+
+I triggered the active:initDatabase endpoint by issuing the request into the test rootspace (after importing the new rdbms space into the test module rootspace), in order that the `matches` argument could be resolved to the HDS set of matches obtained from CSV file.
+
+	<request>
+		<identifier>active:initDatabase</identifier>
+		<argument name="matches">active:MatchResults+season@2014-2015+csvFile@res:/resources/matches/2014-2015.csv</argument>
+	</request>
+
+This request effectively transfers football match state from CSV -> HDS -> RDBMS.  Resolution into the test space superstack ensures that all of the endpoints can be resolved.
 
 Gotchas & Lessons Learnt
 -----------------------
@@ -249,5 +261,6 @@ Mylyn WikiText (for authoring module documentation markdown)
 
 DBBeaver (SQL)
 
+Groovy Editor (https://github.com/groovy/groovy-eclipse/wiki)
  
 For more information on editing documentation see the [doc:sysadmin:guide:doc:editing|Editing Guide].

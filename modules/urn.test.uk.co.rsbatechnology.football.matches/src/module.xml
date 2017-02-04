@@ -35,6 +35,9 @@
       <import><!-- import the main space which we are testing -->
          <uri>urn:uk:co:rsbatechnology:football:matches</uri>
       </import>
+      <import><!-- import the RDMS space which we are testing -->
+         <uri>urn:uk:co:rsbatechnology:football:matches:results:rdbms</uri>
+      </import>
       <import>
          <uri>urn:org:netkernel:xml:core</uri>
       </import>
