@@ -39,6 +39,7 @@
          <uri>urn:uk:co:rsbatechnology:football:matches:results:rdbms</uri>
       </import>
       <import>
+      	 <!--  For XPath assert library -->
          <uri>urn:org:netkernel:xml:core</uri>
       </import>
    		<import>

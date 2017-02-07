@@ -257,6 +257,10 @@ Stumbling blocks encountered whilst working on this module:
   9.5 Trigger NK requests as appropriate to hit the endpoints you want to debug.
   
   10. To shutdown a running Netkernel that was started with `$ ./netkernel.sh` from the command line, hit Ctrl+C,. This will gracefully shut the instance down. Using Ctrl+Z will kill the local command, but leave the NK process running (then have to use `ps -ax | grep NK` then `kill -9 373737`)
+  
+  11. If you add a doc for an endpoint (using the `{endpoint .. {/endpoint}`) macro, it will not show up properly in the Space Explorer until you rebuild the search index of the NK instance.
+  
+  12. If you have any endpoints within a space with the same `id` as the space itself, this will cause the Space Explorer to report "[broken meta]" as the name of the endpoint. There is no indication in the NK log that anything is wrong with the module definition. 
 
 Useful Eclipse Plugins for NetKernel Development
 ------------------------------------------------
