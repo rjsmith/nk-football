@@ -1,2 +1,8 @@
 # OS
 .DS_Store
+
+.gradle/3.3/taskArtifacts/taskArtifacts.lock
+
+.gradle/3.3/taskArtifacts/fileSnapshots.bin
+
+.gradle/3.3/taskArtifacts/taskArtifacts.bin
