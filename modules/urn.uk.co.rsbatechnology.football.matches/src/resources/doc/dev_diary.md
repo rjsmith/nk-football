@@ -16,6 +16,7 @@ Development Diary
  3. Created a fileset endpoint `<regex>res:/resources/matches/.*csv</regex>`
  4. Used the Request Trace tool to check that the resource res:/resources/matches/Premier.csv can resolve
 
+
 ## 3. Results Endpoint
 
 The idea is to provide an accessor endpoint that can return the set of all match results in a given football season.
@@ -25,6 +26,7 @@ The idea is to provide an accessor endpoint that can return the set of all match
  3. Body of onSource method gets the 'season' (string) argument from the context request, then sources the corresponding csv file representation as a IReadableBinaryStreamRepresentation object.
  4. Set up a dummy response to return the size of the returned stream object.
  5. Used the Request Trace tool to check the request resolution and the endpoint returns a representation (e.g. "active:MatchResults+season@2014-2015")
+
 
 ## 4. HomeAwayResults Endpoint
 
@@ -48,7 +50,7 @@ Test using RequestTool:
         </request>
         
 Created a protected method `parseHomeTeamResults` to calculate home team results from set of matches.  Created a HomeResultsAccessorTests jUnit class to test the `parseHomeTeamResults` method.
- 
+
 Once the test was passing, the "// DO" section of the endpoint body was easy: call the `parseHomeTeamResults` method, then build a simple HDS structure to hold the results:
  
 	  teamResults: 
@@ -80,7 +82,7 @@ Refactored HomeResultsAccessor into HomeAwayResultsAccessor to handle both home 
 				<argument name="matches" desc="Set of matches e.g. as returned from active:MatchResults"/>
 				<argument name="homeOrAway" desc="Compute results when team is playing at home or away"/>
 		</active>
-      
+
 Added a Mapper endpoint to provide `active:HomeResults` and `active:AwayResults` service accessors, which call through to `active:HomeAwayResults` endpoint, which is now contained inside the Mapper's private space:
   
         <endpoint>
@@ -98,6 +100,7 @@ Added a Mapper endpoint to provide `active:HomeResults` and `active:AwayResults`
                 <argument name="homeOrAway">home</argument>
             </request>
         </endpoint>
+
   
 # 5. ResultsTableEndpoint
 
@@ -131,7 +134,8 @@ Tested this with the Request Trace:
 		<identifier>active:ResultsTable</identifier>
 		<argument name="matches">active:MatchResults+season@2014-2015+csvFile@res:/resources/matches/2014-2015.csv</argument>
 	</request>
- 
+
+
 ## 6. XUNIT Tests Triggered from Eclipse
 
 I recalled I had previously experimented in using RobotFramework to externally trigger the execution of NetKernel XUnit tests, and assert the results returned.  This worked by using an (undocumented?) known url that allows externalsystems to trigger execution of a module's xUnit tests via the backend fulcrum.
@@ -204,7 +208,6 @@ Whilst writing the MatchResultsRDBMSAccessor class, I used the NetKernel SQL Pla
 I added a simple XUnit test to assert that the endpoint returns valid HDS match representation.
 
 
-
 Gotchas & Lessons Learnt
 -----------------------
 Stumbling blocks encountered whilst working on this module:
@@ -235,10 +238,10 @@ Stumbling blocks encountered whilst working on this module:
 	        </request>
 	</argument>
 	</request>
-	
+
  5. Standard module endpoint `<doc>` element is no longer supported, although it is still documented. The expected technique is:
  5.1  to add a doc (referenced in the module's etc/system/Docs.xml) for each endpoint you want to document, also specifying `<category>doc accessor</category>`
- 5.2 adding {endpoint}MyEndpointUri{endpoint} macro to bring in the auto-generated endpoint documentation.
+ 5.2 adding <span>{</span>endpoint}MyEndpointUri<span>{</span>endpoint} macro to bring in the auto-generated endpoint documentation.
  
   6. XUnit Test space public endpoints
      All endpoints in a XPath unit test space MUST BE PUBLIC!  Even any `<import>`ed spaces required for the tests.  Private endpoints cannot be resolved by the external XUnit test manager. 
@@ -246,7 +249,7 @@ Stumbling blocks encountered whilst working on this module:
   7. Exporting contents of jars from a module using the `<system><classpath><export>` must specify the correct regex to include all classes and other files you want to expose to other modules. eg:
   7.1 "com\.foo\.bar\..*" for all java classes in the com.foo.bar package (and sub-packages).
   7.2 "com/foo/bar/..*" for files of any type under the file path com/foo/bar
-  
+
   8. The `active:java` language runtime endpoint does not get access to Netkernel's superstack classloader (ie. access to classes via modules imported into the module containing the `active:java` endpoint). It only gets access to the local lib/ folder and classes in the module itself (unlike other language runtime endpoints like active:groovy).
    
   9. To remote debug a java endpoint in a running NetKernel instance:
@@ -262,6 +265,8 @@ Stumbling blocks encountered whilst working on this module:
   
   12. If you have any endpoints within a space with the same `id` as the space itself, this will cause the Space Explorer to report "[broken meta]" as the name of the endpoint. There is no indication in the NK log that anything is wrong with the module definition. 
 
+
+
 Useful Eclipse Plugins for NetKernel Development
 ------------------------------------------------
 
@@ -274,3 +279,5 @@ DBBeaver (SQL)
 Groovy Editor (https://github.com/groovy/groovy-eclipse/wiki)
  
 For more information on editing documentation see the [doc:sysadmin:guide:doc:editing|Editing Guide].
+
+Change the output folder of the gradle NK module to the /build/<project> folder, so that Eclipse auto-build writes into the same folder as the gradle build task.
