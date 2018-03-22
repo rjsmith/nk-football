@@ -41,13 +41,18 @@ Follow these steps to get the two NetKernel modules installed:
     gradle deployModuleTEST
     ````
 
-3. Open a browser and navigate to the [Module Explorer](http://localhost:1060/tools/ae/view/allModules).  Scroll down and check that you you can see the `Football - Matches` and `Test - Football - Natches` modules.
+3. Open a browser and navigate to the [Module Explorer](http://localhost:1060/tools/ae/view/allModules).  Scroll down and check that you you can see the `Football - Matches` and `Test - Football - Matches` modules.
 
 ## Running xUnit Tests
 
-1. Open a browser and navigate to the [Foot Module Xunit page](http://localhost:1060/test/view/html/test:urn:uk:co:rsbatechnology:football:matches).
+1. Open a browser and navigate to the [Football Module Xunit page](http://localhost:1060/test/view/html/test:urn:uk:co:rsbatechnology:football:matches).
 2. Click the **execute** button.
 
+## Dev Diary
+
+Whilst I worked on this application, I kept a [Dev Diary](https://github.com/rjsmith/nk-football/blob/master/modules/urn.uk.co.rsbatechnology.football.matches/src/resources/doc/dev_diary.md) to record the steps I went through , gotchas and lesson learned.
+
+If you have installed the modules into your local NetKernel instance, you can also read it as an [embedded module documentation book](http://localhost:1060/book/view/book:urn:uk:co:rsbatechnology:football:matches/).
 
 ## Football Match Results
 
