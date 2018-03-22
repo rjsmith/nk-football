@@ -280,4 +280,4 @@ Groovy Editor (https://github.com/groovy/groovy-eclipse/wiki)
  
 For more information on editing documentation see the [doc:sysadmin:guide:doc:editing|Editing Guide].
 
-Change the output folder of the gradle NK module to the /build/<project> folder, so that Eclipse auto-build writes into the same folder as the gradle build task.
+Change the output folder of the gradle NK module to the `/build/<project>` folder, so that Eclipse auto-build writes into the same folder as the gradle build task.
