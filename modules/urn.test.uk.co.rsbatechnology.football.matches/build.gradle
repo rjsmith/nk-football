@@ -26,7 +26,7 @@ netkernel {
         TEST
             {
                 edition = "EE"
-                location = "/Users/richardsmith/Projects/NetKernel/NKEE-6.1.1/"
+                location = "/Users/richardsmith/Projects/NetKernel/NKEE6.1.1/"
             }
     }
    

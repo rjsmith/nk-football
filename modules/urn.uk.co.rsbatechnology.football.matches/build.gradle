@@ -8,6 +8,8 @@ buildscript {
 
 dependencies {
 	compile group: 'urn.org.netkernel', name: 'mod.hds', version: '[1.1.1,)'
+    compile 'org.codehaus.groovy:groovy-all:2.4.10'
+    
 	testCompile (
 		[group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'],
 		[group: 'junit', name: 'junit', version: '4.7+'],
@@ -26,7 +28,7 @@ netkernel {
         TEST
             {
                 edition = "EE"
-                location = "/Users/richardsmith/Projects/NetKernel/NKEE-6.1.1/"
+                location = "/Users/richardsmith/Projects/NetKernel/NKEE6.1.1/"
             }
     }
    
