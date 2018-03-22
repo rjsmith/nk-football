@@ -150,15 +150,6 @@
 		</import>
    </rootspace>
    
-   <rootspace name="Football - YAML Test" uri="urn:uk:co:rsbatechnology:football:matches:YAML">
-   		<fileset>
-   			<regex>res:/resources/.*yaml</regex>
-   		</fileset>
-   		<import>
-   			<uri>urn:org:netkernel:yaml:core</uri>
-   		</import>
-   </rootspace>
-   
    <rootspace name="Football - Matches - Documentation Space" uri="urn:uk:co:rsbatechnology:football:matches:doc">
       <fileset>
          <regex>res:/etc/system/(Books|Docs).xml</regex>
