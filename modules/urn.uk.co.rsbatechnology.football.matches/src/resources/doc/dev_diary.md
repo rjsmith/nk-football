@@ -218,13 +218,8 @@ Stumbling blocks encountered whilst working on this module:
     
         org.xml.sax.SAXParseException
         The element type "accessor" must be terminated by the matching end-tag "</accessor>".
-
-      
- 2. Structure module endpoint java files under `src/<package>/endpoint packages`, then create `src/<package>/doc` folder for endpoint - specific documentation, referenced in module.xml by `<doc>res:/<package>/doc/foo.md</doc>`.
  
  3. Use the NK Backend Module Explorer "Browse Module Files" menu option to quickly view all files (especially module.xml) from a module, e.g. Netkernel modules.
- 
-      <rootspace> </rootspace>
 
  4. Use the active:fragmentHDS in conjunction with the RequestTrace tool to experiment with xpath expressions (where the expression is supposed to return a single node).  I already had org.netkernel.mod.hds imported into my application space, so I could just inject a request into my application space, using other resources and test data I had available:
  
@@ -244,7 +239,7 @@ Stumbling blocks encountered whilst working on this module:
  5.2 adding <span>{</span>endpoint}MyEndpointUri<span>{</span>endpoint} macro to bring in the auto-generated endpoint documentation.
  
   6. XUnit Test space public endpoints
-     All endpoints in a XPath unit test space MUST BE PUBLIC!  Even any `<import>`ed spaces required for the tests.  Private endpoints cannot be resolved by the external XUnit test manager. 
+     All endpoints in a XUnit unit test space MUST BE PUBLIC!  Even any `<import>`ed spaces required for the tests.  Private endpoints cannot be resolved by the external XUnit test manager. 
      
   7. Exporting contents of jars from a module using the `<system><classpath><export>` must specify the correct regex to include all classes and other files you want to expose to other modules. eg:
   7.1 "com\.foo\.bar\..*" for all java classes in the com.foo.bar package (and sub-packages).

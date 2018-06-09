@@ -16,9 +16,13 @@
    </system>
 
    <rootspace name = "Football - Matches - Results" uri="urn:uk:co:rsbatechnology:football:matches">
-   		<mapper>
+ 		<fileset>
+			<regex>res:/uk/co/rsbatechnology/football/doc/.*</regex>
+		</fileset>
+ 
+   		<mapper>   		
    			<config>
-   				<endpoint>
+   				<endpoint>   				
    					<name>Home Team Results</name>
    					<description>Aggregates results for each team when playing at home</description>
 		 			<grammar>
